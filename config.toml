@@ -1,0 +1,16 @@
+#   Configure file for pyKlock.py 
+#   (c) Kevin Scott   Written Sunday 03 May 2026  22:41:19
+#
+#   true and false are lower case 
+#
+[INFO]
+myVERSION = "2026.1"
+myNAME = "pyStub_PyQt"
+
+[APPLICATION]
+x_pos = 100
+y_pos = 100
+width = 400
+height = 400
+confirmExit = false
+style = "MaterialDark.qss"

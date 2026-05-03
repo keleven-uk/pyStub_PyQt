@@ -1,0 +1,51 @@
+###############################################################################################################
+#    history.txt   Copyright (C) <2026>  <Kevin Scott>                                                     #
+#                                                                                                             #
+#    History file for pyStub_PyQt.                                                                               #
+#                                                                                                             #
+###############################################################################################################
+#                                                                                                             #
+#    This program is free software: you can redistribute it and/or modify it under the terms of the           #
+#    GNU General Public License as published by the Free Software Foundation, either Version 3 of the         #
+#    License, or (at your option) any later Version.                                                          #
+#                                                                                                             #
+#    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without        #
+#    even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               #
+#    GNU General Public License for more details.                                                             #
+#                                                                                                             #
+#    You should have received a copy of the GNU General Public License along with this program.               #
+#    If not, see <http://www.gnu.org/licenses/>.                                                              #
+#                                                                                                             #
+###############################################################################################################
+
+
+
+V2021.1
+
+    basic program completed.
+
+	main.py
+    config.toml
+	LICENCE.txt
+	README.md
+	requirements.txt
+	data\
+	  |  pyStub_PyQt.log		[logging file,  not git tracked]
+	docs\
+	  |  history.txt
+	src\
+	  |  config.py
+	  |  pyStub_PyQt.py
+	  |  logger.py
+	  |  projectPaths.py
+	     classes\
+		   | menu.py
+		   | styles
+	  	 utils\
+           |  stubUtils.py
+	resources\
+	  |  tea.icon
+	  |  cross.png
+	      style\
+		    |  Combinear.qss
+			|  MaterialDark.qss
