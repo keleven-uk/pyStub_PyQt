@@ -43,7 +43,7 @@ class mainWindow(QMainWindow):
         self.menu   = mu.Menu(self.config, self.logger, self)
         self.myMenu = self.menu.buildMenu()
 
-        self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
+        #self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
         #self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         #self.setStyleSheet("background : transparent;")
 
@@ -54,6 +54,7 @@ class mainWindow(QMainWindow):
 
         self.myMenu.setVisible(True)
 
+        self.updateTime()
 
     def updateValues(self):
         """  Set up run time values from the config file.
@@ -91,7 +92,6 @@ class mainWindow(QMainWindow):
 
         self.centralWidget.setLayout(self.centralLayout)
 
-
         #  Set up short timer to update the clock every second
         self.Timer = QTimer(self)
         self.Timer.timeout.connect(self.updateTime)
@@ -104,19 +104,19 @@ class mainWindow(QMainWindow):
         self.statusBar = self.statusBar()
         self.statusBar.setSizeGripEnabled(False)
 
-        self.stsDate    = QLabel("Thursday 23 October 2025")
-        self.stsState   = QLabel("cisN")
-        self.stsFrmt    = QLabel("L.E.D.")
-        self.stsIdle    = QLabel("idle : 7s")
+        self.stsTime  = QLabel("00:00")
+        self.stsDate  = QLabel("")
+        self.stsState = QLabel("cisN")
+        self.stsIdle  = QLabel("")
 
+        self.stsTime.setAlignment(Qt.AlignmentFlag.AlignLeft)
         self.stsDate.setAlignment(Qt.AlignmentFlag.AlignLeft)
         self.stsState.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.stsFrmt.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.stsIdle.setAlignment(Qt.AlignmentFlag.AlignRight)
 
+        self.statusBar.addPermanentWidget(self.stsTime,  1)
         self.statusBar.addPermanentWidget(self.stsDate,  1)
         self.statusBar.addPermanentWidget(self.stsState, 1)
-        self.statusBar.addPermanentWidget(self.stsFrmt, 1)
         self.statusBar.addPermanentWidget(self.stsIdle,  1)
     # ----------------------------------------------------------------------------------------------------------------------- updateTime() ----------
     def updateTime(self):
@@ -126,15 +126,15 @@ class mainWindow(QMainWindow):
             return
 
         dtCurrent = QDateTime.currentDateTime()
-        txtTime   = dtCurrent.toString("HH:mm:ss")
+        #txtTime   = dtCurrent.toString("HH:mm:ss")
+        txtTime   = dtCurrent.toString("HH:mm")
         txtDate = dtCurrent.toString("dddd dd MMMM yyyy")
 
+        self.stsTime.setText(txtTime)
+        self.stsDate.setText(txtDate)
         self.stsState.setText(f"{utils.getState()}")
         self.stsIdle.setText(utils.getIdleDuration())
-        self.stsDate.setText(txtDate)
-
-        currentMin = dtCurrent.time().minute()
-    # ----------------------------------------------------------------------------------------------------------------------- closeEvent() ----------
+   # ----------------------------------------------------------------------------------------------------------------------- closeEvent() ----------
     def closeEvent(self, event):
         """  Ask for confirmation before closing, if required.
 
