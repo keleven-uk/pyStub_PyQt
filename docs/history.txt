@@ -18,6 +18,12 @@
 #                                                                                                             #
 ###############################################################################################################
 
+V2026.3   [6 May 2026]
+
+	Added a setting window, hangs of File/Settings menu header.
+	Added Help, Licence, Log, About windows, all under the Help menu.
+	Further code clean up.
+
 
 V2026.2   [5 May 2026]
 

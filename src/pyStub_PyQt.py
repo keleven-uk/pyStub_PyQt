@@ -1,5 +1,6 @@
 ###############################################################################################################
 #    pyStub_PyQt   Copyright (C) <2026>  <Kevin Scott>                                                        #
+#                                                                                                             #
 #    A skeleton program for a python GUI application using the GUI framework PyQt6.                           #
 #                                                                                                             #
 #    For changes see history.txt                                                                              #
@@ -20,6 +21,8 @@
 ###############################################################################################################
 # -*- coding: utf-8 -*-
 
+import time
+
 from PyQt6.QtWidgets import (QMainWindow, QHBoxLayout, QVBoxLayout, QMessageBox, QLabel,
                              QPushButton, QFrame, QGroupBox)
 from PyQt6.QtCore    import Qt, QTimer, QDateTime
@@ -32,6 +35,8 @@ class mainWindow(QMainWindow):
     def __init__(self, myConfig, myLogger):
         super().__init__()
 
+        self.startTime = time.perf_counter()
+
         self.config = myConfig
         self.logger = myLogger
 
@@ -40,7 +45,7 @@ class mainWindow(QMainWindow):
         self.setWindowTitle(self.config.NAME)
         self.setGeometry(self.Xpos, self.Ypos, self.width, self.height)
 
-        self.menu   = mu.Menu(self.config, self.logger, self)
+        self.menu   = mu.Menu(self.config, self.logger, self.startTime, self)
         self.myMenu = self.menu.buildMenu()
 
         #self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
@@ -122,9 +127,6 @@ class mainWindow(QMainWindow):
     def updateTime(self):
         """  Update the time, info line  and status bar every second.
         """
-        if not self.isVisible():            #  Only update the time etc if the klock is visible.
-            return
-
         dtCurrent = QDateTime.currentDateTime()
         #txtTime   = dtCurrent.toString("HH:mm:ss")
         txtTime   = dtCurrent.toString("HH:mm")
@@ -165,8 +167,8 @@ class mainWindow(QMainWindow):
     def saveConfig(self):
         """  Save stuff to the config file, in case any has changed.
         """
-        self.config.X_POS       = self.Xpos
-        self.config.Y_POS       = self.Ypos
-        self.config.WIDTH       = self.width
-        self.config.HEIGHT      = self.height
+        self.config.X_POS  = self.Xpos
+        self.config.Y_POS  = self.Ypos
+        self.config.WIDTH  = self.width
+        self.config.HEIGHT = self.height
         self.config.writeConfig()

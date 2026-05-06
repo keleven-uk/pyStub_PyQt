@@ -33,7 +33,7 @@ FROZEN        = False
 if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):   #  Running as a stand alone executable.
     FROZEN        = True
     CONFIG_PATH   = "config.toml"
-    LOGGER_PATH   = "pyStub_PyQt.log"
+    LOGGER_PATH   = "pyStub_PyQt.log"        #  HARD CODED
     RESOURCE_PATH = "resources"
     HELP_PATH     = "help"
     STYLE_PATH    = "resources/style"

@@ -21,6 +21,7 @@
 
 import win32api
 import win32con
+import ctypes
 
 def getState():
     """  Checks the current state of Caps Lock, Insert, Scroll Lock & Num Lock.
@@ -86,5 +87,31 @@ def formatSeconds(secs):
     else:
         return f"{seconds:02.1f}s"
 
+def getBootTime():
+    """  Returns the number of seconds since system boot up.
+
+         https://www.geeksforgeeks.org/python/getting-the-time-since-os-startup-using-python/
+    """
+    # getting the library in which GetTickCount64() resides
+    lib = ctypes.windll.kernel32
+
+    # calling the function and storing the return value
+    t = lib.GetTickCount64()
+
+    # since the time is in milliseconds i.e. 1000 * seconds
+    # therefore truncating the value
+    t = int(str(t)[:-3])
+
+    # extracting hours, minutes, seconds & days from t
+    # variable (which stores total time in seconds)
+    mins, sec = divmod(t, 60)
+    hour, mins = divmod(mins, 60)
+    days, hour = divmod(hour, 24)
+
+    # formatting the time in readable form
+    # (format = x days, HH:MM:SS)
+    #print(f"{days} days, {hour:02}:{mins:02}:{sec:02}")
+
+    return (t)
 
 
